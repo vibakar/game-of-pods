@@ -20,6 +20,17 @@ spec:
       containers:
       - image: mysql:5.7
         name: drupal-mysql
+        env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: drupal-mysql-secret
+              key: MYSQL_DATABASE
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: drupal-mysql-secret
+              key: MYSQL_ROOT_PASSWORD
         resources: {}
         volumeMounts:
         - name: vol1
